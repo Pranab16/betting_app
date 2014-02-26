@@ -1,0 +1,30 @@
+<% content_for :stylesheets do %>
+    <%= stylesheet_link_tag "tt_betting/jquery.datetimepicker", :media => "all" %>
+<% end %>
+
+<% content_for :javascripts do %>
+    <%= javascript_include_tag "tt_betting/jquery.datetimepicker" %>
+    <%= javascript_include_tag "tt_betting/application" %>
+<% end %>
+
+<% content_for :tt_betting_top_tabs do %>
+<div class="top_nav_tabs pull-left">
+    <ul class="nav nav-pills">
+        <li class="<%= yield :home %>"><%= link_to "Home", :root %></li>
+        <% if current_user.is_superuser %>
+            <li class="<%= yield :create_new_question %>"><%= link_to "Create new question", new_question_path %></li>
+            <li class="<%= yield :active_question %>"><%= link_to "Active questions", question_active_path %></li>
+            <li class="<%= yield :inactive_question %>"><%= link_to "Inactive questions", question_inactive_path %></li>
+            <li class="<%= yield :expired_question %>"><%= link_to "Expired questions", question_expired_path %></li>
+        <% else %>
+            <li class="<%= yield :answered_question %>"><%= link_to "Answered questions", question_answered_path %></li>
+            <li class="<%= yield :unanswered_question %>"><%= link_to "Unanswered questions", question_unanswered_path %></li>
+            <li class="<%= yield :expired_question %>"><%= link_to "Expired questions", question_expired_path %></li>
+        <% end %>
+    </ul>
+</div>
+<% end %>
+<% content_for :content do %>
+    <%= yield %>
+<% end %>
+<%= render template: "layouts/application" %>

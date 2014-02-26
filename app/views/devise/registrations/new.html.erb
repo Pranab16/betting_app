@@ -1,0 +1,42 @@
+<div class="login_page_wrapper">
+    <h2>Sign Up</h2>
+    <div class="login_card">
+
+        <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+            <div>
+                <% if resource.errors.get(:name) %>
+                    <span class="error"><%= resource.errors.get(:name)[0] %></span>
+                <%end%>
+                <%= f.text_field :name, :placeholder => "Name", :autofocus => true %>
+            </div>
+            <div>
+                <% if resource.errors.get(:email) %>
+                    <span class="error"><%= resource.errors.get(:email)[0] %></span>
+                <%end%>
+                <%= f.email_field :email, :placeholder => "Email" %>
+            </div>
+
+            <div>
+                <% if resource.errors.get(:password) %>
+                    <span class="error"><%= resource.errors.get(:password)[0] %></span>
+                <%end%>
+                <%= f.password_field :password, :placeholder => "Password" %>
+            </div>
+
+            <div>
+                <% if resource.errors.get(:password_confirmation) %>
+                    <span class="error"><%= resource.errors.get(:password_confirmation)[0] %></span>
+                <%end%>
+                <%= f.password_field :password_confirmation, :placeholder => "Confirm Password " %>
+            </div>
+
+            <div>
+                <%= f.submit "Sign up", :class => 'btn btn-info' %>
+                <%= render "devise/shared/links" %>
+            </div>
+
+        <% end %>
+
+
+    </div>
+</div>

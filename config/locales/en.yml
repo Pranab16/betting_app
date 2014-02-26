@@ -1,0 +1,10 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  hello: "Hello world"
+  new_question: "Successfully created question."
+  invalid_new_question: "Please provide complete and correct info."
+  update_inactive_question: "Only inactive questions can be updated."
+  show_inactive_question: "Question %{question_id} does not exist."
+  updated_question: "Successfully updated question."

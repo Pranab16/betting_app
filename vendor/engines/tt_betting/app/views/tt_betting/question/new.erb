@@ -1,0 +1,53 @@
+<% content_for :create_new_question do %>
+    active
+<% end %>
+
+<div class="login_page_wrapper">
+    <h2>Create New Question</h2>
+    <div class="login_card">
+        <%= form_for @question, :url => new_question_path(@question) do |f| %>
+
+            <div>
+                <% if @question.errors.get(:name) %>
+                    <span class="error"><%= @question.errors.get(:name)[0] %></span>
+                <% end %>
+                <%= f.text_field :name, :placeholder => "Question", :autofocus => true %>
+            </div>
+
+            <div class="choice_card">
+                <%= f.fields_for :choices do |choice| %>
+                    <p>
+                        <%= choice.text_field :name, :placeholder => "Choice" %>
+                    </p>
+                <% end %>
+            </div>
+            <div>
+                <%= link_to "Add choice", '#', {:class => 'js-add_choice'} %>
+            </div>
+
+            <div class="input-append">
+                <% if @question.errors.get(:time_to_expire) %>
+                    <span class="error"><%= @question.errors.get(:time_to_expire)[0] %></span>
+                <% end %>
+                <%= f.text_field :time_to_expire, :placeholder => "Time to expire", :id =>"js-date_time_picker" %>
+                <span class="add-on">
+                  <span class="icon-calendar"></span>
+                </span>
+            </div>
+
+            <div>
+                <% if @question.errors.get(:score) %>
+                    <span class="error"><%= @question.errors.get(:score)[0] %></span>
+                <% end %>
+                <%= f.text_field :score, :value => number_with_precision(f.object.score, :precision => 2), :placeholder => "Points" %>
+            </div>
+
+            <div>
+                <%= f.check_box :is_active, :placeholder => "Points" %> <span>Active</span>
+            </div>
+            <div>
+                <%= f.submit 'Create', :class => 'btn btn-info' %>
+            </div>
+        <% end %>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+<% content_for :inactive_question do %>
+    active
+<% end %>
+
+<h1>Inactive Questions</h1>
+
+<div class="questions content_wrapper">
+    <% for question in @questions %>
+        <div class="question_wrapper">
+            <h4 class="question_name">Q <%= question.id %>: <%= question.name %></h4>
+            <%= link_to 'Edit', edit_question_path(question) %>
+            <p class="question_point">
+                [<%= question.score %> point(s)]
+            </p>
+
+            <% diff = question.time_to_expire - DateTime.now %>
+
+            <p class="question_time_left">
+                <% if diff > 0 %>
+                    [Time left: <%= '%d day(s) %d hours %02d minutes' % [ diff / (24*3600), (diff % (24*3600)) / 3600, (diff / 60) % 60] %>]
+                <% else %>
+                    [Expired]
+                <% end %>
+            </p>
+
+            <div class="choices">
+                <% for choice in question.choices %>
+                    <div class="choice_wrapper">
+                        <%= radio_button_tag question.id, choice.id, false, disabled: true, class: "js-select_choice" %>
+                        <%= choice.name %>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    <% end %>
+</div>

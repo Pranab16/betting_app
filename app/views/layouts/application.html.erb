@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TtBettingApp</title>
+    <%= stylesheet_link_tag "bootstrap", :media => "all" %>
+    <%= yield :stylesheets %>
+    <%= stylesheet_link_tag "application", :media => "all" %>
+
+    <%= javascript_include_tag "bootstrap.min" %>
+    <%= javascript_include_tag "application" %>
+    <%= yield :javascripts %>
+    <%= csrf_meta_tags %>
+</head>
+<body>
+
+<header>
+    <div class="header_wrapper">
+        <div class="pull-left logo_wrapper">
+            <a href=""><%= image_tag "logo.gif" %></a>
+        </div>
+
+        <% if current_user %>
+            <%= yield :tt_betting_top_tabs %>
+        <% end %>
+        <div class="logout navbar-text pull-right">
+            <% if user_signed_in? %>
+                Logged in as <strong><%= current_user.email %></strong>.
+                <%= link_to 'Edit profile', main_app.edit_user_registration_path, :class => 'navbar-link' %> |
+                <%= link_to "Logout", main_app.destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+            <% else %>
+                <%= link_to "Sign up", main_app.new_user_registration_path, :class => 'navbar-link'  %> |
+                <%= link_to "Login", main_app.new_user_session_path, :class => 'navbar-link'  %>
+            <% end %>
+        </div>
+
+
+    </div>
+</header>
+
+<div class="content">
+    <% if notice %>
+        <p class="alert alert-notice"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+        <p class="alert alert-error"><%= alert %></p>
+    <% end %>
+
+    <%= content_for?(:content) ? yield(:content) : yield %>
+</div>
+
+
+
+</body>
+</html>

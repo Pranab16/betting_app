@@ -1,0 +1,7 @@
+fr:
+  hello: "Bonjour tout le monde"
+  new_question: "Question créé avec succès."
+  invalid_new_question: "S'il vous plaît fournir des informations complètes et correctes."
+  update_inactive_question: "Peuvent être mis à jour Seules les questions inactifs."
+  show_inactive_question: "Question %{question_id} n'existe pas."
+  updated_question: "Question correctement mis à jour."

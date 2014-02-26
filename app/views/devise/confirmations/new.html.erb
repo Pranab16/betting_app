@@ -1,0 +1,20 @@
+<div class="login_page_wrapper">
+    <h2>Resend confirmation instructions</h2>
+    <div class="login_card">
+        <%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f| %>
+
+          <div>
+              <% if resource.errors.get(:email) %>
+                  <span class="error"><%= resource.errors.get(:email)[0] %></span>
+              <%end%>
+            <%= f.email_field :email, :placeholder => "Email", :autofocus => true %>
+          </div>
+
+          <div>
+              <%= f.submit "Resend confirmation instructions", :class => 'btn btn-info' %>
+              <%= render "devise/shared/links" %> %>
+          </div>
+        <% end %>
+
+    </div>
+</div>

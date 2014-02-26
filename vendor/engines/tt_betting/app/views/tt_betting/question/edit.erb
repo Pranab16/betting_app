@@ -1,0 +1,38 @@
+<div class="login_page_wrapper">
+    <h2>Update Question</h2>
+    <div class="login_card">
+        <%= form_for @question, url: question_path(@question), method: :put do |f| %>
+            <p>
+                <%= f.text_field :name, :placeholder => "Question" %>
+            </p>
+            <div class="choice_card">
+                <%= f.fields_for :choices do |choice| %>
+                    <p>
+                        <%= choice.text_field :name, :placeholder => "Choice" %>
+                    </p>
+                <% end %>
+            </div>
+            <p>
+                <%= link_to "Add choice", '#', {:class => 'js-add_choice'} %>
+            </p>
+
+            <div class="input-append">
+                <%= f.text_field :time_to_expire, :placeholder => "Time to expire", :id =>"js-date_time_picker" %>
+                <span class="add-on">
+                  <span class="icon-calendar"></span>
+                </span>
+            </div>
+
+            <p>
+                <%= f.text_field :score, :value => number_with_precision(f.object.score, :precision => 2), :placeholder => "Points" %>
+            </p>
+
+            <p>
+                <%= f.check_box :is_active, :placeholder => "Points" %> <span>Active</span>
+            </p>
+            <p>
+                <%= f.submit 'Update', :class => 'btn btn-info' %>
+            </p>
+        <% end %>
+    </div>
+</div>
